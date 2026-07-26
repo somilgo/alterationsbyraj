@@ -38,7 +38,6 @@ export const business = {
   brand: { pre: 'Alterations by', accent: 'Raj' },
 
   // Phone number in two formats: one for links, one for display.
-  // ⚠️ PLACEHOLDER — replace with Raj's real number before sharing the site.
   phoneLink: '+18139652399', // used by text/call links — keep the +1 and no spaces
   phoneDisplay: '(813) 965-2399', // how the number appears on the page
 
