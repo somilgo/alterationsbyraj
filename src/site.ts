@@ -83,7 +83,7 @@ export const seo = {
 export const hero = {
   eyebrow: 'Expert alterations · St. Petersburg & Tampa Bay, FL',
   heading: 'Expert alterations — almost everything just $10.',
-  lead: 'Clothing alterations, repairs, and curtain & drapery work from Raj, a tailor who spent years running his own cleaners. Almost every alteration is a flat <strong>$10</strong>, with a clear price before any work begins.',
+  lead: 'Clothing alterations, repairs, and curtain & drapery work from Raj, who spent years running his own cleaners. Almost every alteration is a flat <strong>$10</strong>, with a clear price before any work begins.',
   contactNote:
     '<strong>Text is the best way to reach Raj.</strong> Send a photo and a quick note about what you need for a fast, free quote.',
 };
@@ -93,7 +93,6 @@ export const hero = {
 export const priceHighlights: { label: string; price: string }[] = [
   { label: 'Pants', price: '$10' },
   { label: 'Shirts', price: '$10' },
-  { label: 'Zippers', price: '$10' },
 ];
 
 // "Why customers choose us" card in the hero.
@@ -134,7 +133,7 @@ export const services: Service[] = [
     title: 'Repairs & Adjustments',
     description:
       'Replace zippers and buttons, mend seams and tears, and make general repairs and adjustments to give your clothes a second life.',
-    fromPrice: '$10',
+    fromPrice: null,
   },
   {
     title: 'Curtains & Drapery',
