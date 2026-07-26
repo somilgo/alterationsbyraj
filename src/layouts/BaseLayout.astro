@@ -1,0 +1,97 @@
+---
+import '@fontsource-variable/fraunces';
+import '../styles/global.css';
+import { business, services, faqs } from '../site';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+
+// Canonical URL (respects the configured site + base path).
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const ogImage = new URL(`${base}/og-image.svg`, Astro.site).href;
+
+// --- Structured data Google uses for rich results & local search ---
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ClothingStore',
+  '@id': canonical + '#business',
+  name: business.name,
+  description,
+  url: canonical,
+  telephone: business.phoneLink,
+  image: ogImage,
+  priceRange: business.priceRange,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: business.locality,
+    addressRegion: business.region,
+    addressCountry: business.country,
+  },
+  areaServed: business.areaServed.map((name) => ({
+    '@type': 'City',
+    name,
+  })),
+  makesOffer: services.map((s) => ({
+    '@type': 'Offer',
+    itemOffered: { '@type': 'Service', name: s.title, description: s.description },
+  })),
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Local SEO hints -->
+    <meta name="geo.region" content="US-PA" />
+    <meta name="geo.placename" content={`${business.locality}, ${business.regionName}`} />
+
+    <!-- Open Graph (Facebook, iMessage, etc.) -->
+    <meta property="og:type" content="business.business" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={business.name} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Structured data -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(localBusinessSchema)}
+    />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

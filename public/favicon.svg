@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Alterations">
+  <rect width="64" height="64" rx="14" fill="#7a2e4a"/>
+  <!-- needle -->
+  <line x1="20" y1="46" x2="44" y2="22" stroke="#faf6f0" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- needle eye -->
+  <circle cx="44" cy="22" r="3.4" fill="none" stroke="#b5863c" stroke-width="2.2"/>
+  <!-- thread -->
+  <path d="M44 22 C 36 24, 40 32, 32 33 C 26 34, 28 40, 22 41" fill="none" stroke="#b5863c" stroke-width="2" stroke-linecap="round"/>
+</svg>

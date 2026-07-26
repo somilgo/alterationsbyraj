@@ -1,0 +1,231 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import {
+  business,
+  seo,
+  hero,
+  priceHighlights,
+  whyUs,
+  services,
+  sections,
+  about,
+  cta,
+  footer,
+  faqs,
+} from '../site';
+
+const smsLink = `sms:${business.phoneLink}`;
+
+// Friendly grammatical list of the main towns for the intro copy.
+const topTowns = business.areaServed.slice(0, 4).join(', ');
+
+// Fill {locality} / {topTowns} tokens used in some config strings.
+const fill = (s: string) =>
+  s.replaceAll('{locality}', business.locality).replaceAll('{topTowns}', topTowns);
+
+// How a service's price is shown: "from $15", or "Ask for a quote" when open-ended.
+const priceLabel = (p: string | null) => (p ? `from ${p}` : 'Ask for a quote');
+---
+
+<BaseLayout title={seo.title} description={seo.description}>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="#top">{business.brand.pre} <span>{business.brand.accent}</span></a>
+      <nav class="nav" aria-label="Primary">
+        <div class="nav-links">
+          <a href="#services">Services</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#about">About</a>
+          <a href="#area">Service Area</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <a class="btn btn-primary header-cta" href={smsLink}>Text us</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">{hero.eyebrow}</p>
+          <h1>{hero.heading}</h1>
+          <p class="lead" set:html={hero.lead} />
+
+          {
+            priceHighlights.length > 0 && (
+              <ul class="price-highlights" aria-label="Starting prices">
+                {priceHighlights.map((h) => (
+                  <li class="price-chip">
+                    <span class="pc-label">{h.label}</span>
+                    <span class="pc-price">
+                      from <strong>{h.price}</strong>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            )
+          }
+
+          <div class="btn-row" style="margin-top:1.6rem">
+            <a class="btn btn-primary" href={smsLink}>📱 Text {business.phoneDisplay}</a>
+            <a class="btn btn-secondary" href="#pricing">See all prices</a>
+          </div>
+          <p style="margin-top:1rem;color:var(--ink-soft);font-size:0.95rem" set:html={hero.contactNote} />
+        </div>
+
+        <aside class="hero-card">
+          <h3>{whyUs.title}</h3>
+          <ul class="checklist">
+            {whyUs.points.map((point) => <li>{point}</li>)}
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">{sections.services.eyebrow}</p>
+          <h2>{sections.services.heading}</h2>
+          <p class="lead">{sections.services.lead}</p>
+        </div>
+        <div class="cards">
+          {
+            services.map((s) => (
+              <article class="card">
+                <h3>{s.title}</h3>
+                <p>{s.description}</p>
+                <span class="price">
+                  {s.fromPrice ? (
+                    <>
+                      from {s.fromPrice} <small>· final price by quote</small>
+                    </>
+                  ) : (
+                    'Ask for a quote'
+                  )}
+                </span>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" class="section-cream-deep">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">{sections.pricing.eyebrow}</p>
+          <h2>{sections.pricing.heading}</h2>
+          <p class="lead">{sections.pricing.lead}</p>
+        </div>
+        <div class="cards">
+          {
+            services.map((s) => (
+              <article class="card">
+                <h3>{s.title}</h3>
+                <span class="price" style="font-size:1.4rem">
+                  {priceLabel(s.fromPrice)}
+                </span>
+              </article>
+            ))
+          }
+        </div>
+        <p class="pricing-note">{sections.pricing.note}</p>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container about-grid">
+        <div>
+          <p class="eyebrow">{about.eyebrow}</p>
+          <h2>{about.heading}</h2>
+          {about.paragraphs.map((p) => <p>{fill(p)}</p>)}
+          <div class="stat-row">
+            {
+              about.stats.map((stat) => (
+                <div class="stat">
+                  <div class="num">{stat.num}</div>
+                  <div class="label">{stat.label}</div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+        <aside class="hero-card">
+          <h3>{about.card.title}</h3>
+          <p style="color:var(--ink-soft)">{about.card.body}</p>
+          <div class="btn-row" style="margin-top:1rem">
+            <a class="btn btn-primary" href={smsLink}>Text us</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- SERVICE AREA -->
+    <section id="area" class="section-cream-deep">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">{sections.area.eyebrow}</p>
+          <h2>{sections.area.heading}</h2>
+          <p class="lead">{fill(sections.area.lead)}</p>
+        </div>
+        <div class="pill-row">
+          {business.areaServed.map((town) => <span class="pill">{town}</span>)}
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">{sections.faq.eyebrow}</p>
+          <h2>{sections.faq.heading}</h2>
+        </div>
+        <div class="faq-list">
+          {
+            faqs.map((f) => (
+              <details class="faq">
+                <summary>{f.q}</summary>
+                <p>{f.a}</p>
+              </details>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA / CONTACT -->
+    <section id="contact" class="cta">
+      <div class="container">
+        <p class="eyebrow" style="color:rgba(255,255,255,0.85)">{cta.eyebrow}</p>
+        <h2>{cta.heading}</h2>
+        <p class="lead">{cta.lead}</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href={smsLink}>📱 Text {business.phoneDisplay}</a>
+        </div>
+        <p style="margin-top:1rem;color:rgba(255,255,255,0.85);font-size:0.95rem">
+          {cta.note}
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div>
+        <strong>{business.name}</strong><br />
+        <span class="muted">{footer.tagline}</span>
+      </div>
+      <div>
+        <a href={smsLink}>Text {business.phoneDisplay}</a><br />
+        <span class="muted">{footer.note}</span>
+      </div>
+    </div>
+  </footer>
+</BaseLayout>
