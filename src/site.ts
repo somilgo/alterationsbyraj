@@ -10,8 +10,6 @@
 // so they stay in sync — to change how the site *looks or works*, edit the
 // shared components; to change what it *says*, edit this file.
 //
-// ⚠️ TODO BEFORE GOING LIVE: set Raj's real phone number in `phoneLink` /
-// `phoneDisplay` below — they are placeholders right now.
 // =============================================================================
 
 // --- Deployment ---------------------------------------------------------------
@@ -41,8 +39,8 @@ export const business = {
 
   // Phone number in two formats: one for links, one for display.
   // ⚠️ PLACEHOLDER — replace with Raj's real number before sharing the site.
-  phoneLink: '+17275550100', // used by text/call links — keep the +1 and no spaces
-  phoneDisplay: '(727) 555-0100', // how the number appears on the page
+  phoneLink: '+18139652399', // used by text/call links — keep the +1 and no spaces
+  phoneDisplay: '(813) 965-2399', // how the number appears on the page
 
   // Service-area business — we intentionally do NOT show a street address. We
   // only name the town/region for trust + local SEO.
