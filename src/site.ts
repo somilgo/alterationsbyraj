@@ -28,8 +28,8 @@
 //     base: '/',
 //     domain: 'alterationsbyraj.com',
 export const deploy = {
-  site: 'https://somilgo.github.io',
-  base: '/alterationsbyraj',
+  site: 'https://alterationsbyraj.com',
+  base: '/',
   domain: '',
 };
 
