@@ -95,7 +95,7 @@ export const seo = {
 // --- Hero ---------------------------------------------------------------------
 // `lead` and `contactNote` may contain simple HTML (e.g. <strong>).
 export const hero = {
-  eyebrow: 'Expert alterations · St. Petersburg & Tampa Bay, FL',
+  eyebrow: `Expert alterations · ${business.regionLabel} · ${business.postalCode} · ${hours.display}`,
   heading: 'Expert alterations — almost everything just $10.',
   lead: 'Clothing alterations, repairs, and curtain & drapery work from Raj, who spent years running his own cleaners. Almost every alteration is a flat <strong>$10</strong>, with a clear price before any work begins.',
   contactNote:
