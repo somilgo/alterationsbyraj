@@ -302,6 +302,23 @@ section {
   font-weight: 700;
 }
 
+/* ---- hero meta (zip + hours) ---- */
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.8rem;
+  margin-top: 1.6rem;
+  padding-top: 1.3rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+
+.hero-meta span {
+  white-space: nowrap;
+}
+
 /* ---- service cards ---- */
 .section-head {
   text-align: center;

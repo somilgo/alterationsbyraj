@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import {
   business,
+  hours,
   seo,
   hero,
   priceHighlights,
@@ -73,6 +74,11 @@ const priceLabel = (p: string | null) => (p ? `from ${p}` : 'Ask for a quote');
             <a class="btn btn-secondary" href="#pricing">See all prices</a>
           </div>
           <p style="margin-top:1rem;color:var(--ink-soft);font-size:0.95rem" set:html={hero.contactNote} />
+
+          <div class="hero-meta">
+            <span>📍 {business.locality}, {business.region} {business.postalCode}</span>
+            <span>🕘 {hours.display}</span>
+          </div>
         </div>
 
         <aside class="hero-card">
@@ -224,6 +230,7 @@ const priceLabel = (p: string | null) => (p ? `from ${p}` : 'Ask for a quote');
       </div>
       <div>
         <a href={smsLink}>Text {business.phoneDisplay}</a><br />
+        <span class="muted">{hours.display}</span><br />
         <span class="muted">{footer.note}</span>
       </div>
     </div>

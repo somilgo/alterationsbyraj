@@ -47,6 +47,8 @@ export const business = {
   region: 'FL',
   regionName: 'Florida',
   country: 'US',
+  // Zip code shown on the landing page and used in structured data.
+  postalCode: '33713',
   // Short human label for the area, used in eyebrows/headings.
   regionLabel: 'St. Petersburg & Tampa Bay, FL',
 
@@ -66,6 +68,18 @@ export const business = {
     'Tierra Verde',
     'Tampa',
   ],
+};
+
+// --- Working hours -------------------------------------------------------------
+export const hours = {
+  // Human-friendly labels used on the page.
+  open: '9:30 AM',
+  close: '6:30 PM',
+  days: '7 days a week',
+  display: '9:30 AM – 6:30 PM · 7 days a week',
+  // Machine-readable times (ISO 24h) used in the structured data Google reads.
+  opens: '09:30',
+  closes: '18:30',
 };
 
 // --- SEO / social -------------------------------------------------------------
@@ -221,7 +235,7 @@ export const faqs = [
   },
   {
     q: 'Where are you located?',
-    a: 'Raj is based in St. Petersburg and proudly serves the surrounding Tampa Bay area. Drop-off and pick-up details are arranged when you reach out by text.',
+    a: 'Raj is based in St. Petersburg, FL (33713) and proudly serves the surrounding Tampa Bay area. He’s open 9:30 AM – 6:30 PM, 7 days a week. Drop-off and pick-up details are arranged when you reach out by text.',
   },
   {
     q: 'How do I get started?',

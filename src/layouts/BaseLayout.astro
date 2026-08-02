@@ -1,7 +1,7 @@
 ---
 import '@fontsource-variable/fraunces';
 import '../styles/global.css';
-import { business, services, faqs } from '../site';
+import { business, hours, services, faqs } from '../site';
 
 interface Props {
   title: string;
@@ -31,6 +31,21 @@ const localBusinessSchema = {
     addressLocality: business.locality,
     addressRegion: business.region,
     addressCountry: business.country,
+    postalCode: business.postalCode,
+  },
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: [
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+      'Sunday',
+    ],
+    opens: hours.opens,
+    closes: hours.closes,
   },
   areaServed: business.areaServed.map((name) => ({
     '@type': 'City',
@@ -66,7 +81,7 @@ const faqSchema = {
     <link rel="canonical" href={canonical} />
 
     <!-- Local SEO hints -->
-    <meta name="geo.region" content="US-PA" />
+    <meta name="geo.region" content={`US-${business.region}`} />
     <meta name="geo.placename" content={`${business.locality}, ${business.regionName}`} />
 
     <!-- Open Graph (Facebook, iMessage, etc.) -->
